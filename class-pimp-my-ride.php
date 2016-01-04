@@ -65,7 +65,7 @@ class Yo_WP_Pimp_My_Ride {
 		add_filter( 'wp_default_scripts', array( $this, 'dequeue_jquery_migrate' )  );
 
 		// Dequeue WP Embed
-		add_filter( 'wp_default_scripts', array( $this, 'dequeue_wp_embed' )  );
+		remove_action( 'wp_head', 'wp_oembed_add_host_js', 10  );
 
 		// Add javascript detection.
 		add_action( 'wp_head', array( $this, 'javascript_detection' ), 0 );
@@ -91,25 +91,12 @@ class Yo_WP_Pimp_My_Ride {
 	 *
 	 * @access private
 	 */
-	public function dequeue_jquery_migrate( $scripts ){
+	public function dequeue_jquery_migrate( $scripts ) {
 		if( ! is_admin() ) {
 			$scripts->remove( 'jquery');
 			$scripts->add( 'jquery', false, array( 'jquery-core' ), false );
 		}
 	}
-
-	/**
-	 * Dequeue WP embed.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @access private
-	 */
-	public function dequeue_wp_embed( $scripts ){
-		$scripts->remove( 'wp-embed');
-	}
-
-
 
 	/**
 	 * Set js class on html element.
