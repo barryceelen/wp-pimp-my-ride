@@ -1,4 +1,4 @@
-# Yo WordPress Pimp My Ride
+# Yo WordPress, 💸🚙 Pimp My Ride
 A small and incomplete collection of WordPress customisations I tend to use, conveniently gathered together in a single class.
 
 - Dequeues jQuery Migrate on front end
