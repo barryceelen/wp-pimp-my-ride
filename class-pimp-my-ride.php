@@ -82,6 +82,10 @@ class Yo_WP_Pimp_My_Ride {
 
 		// Remove percentage symbol from filename (plus symbols etc. would be bad as well).
 		add_filter ( 'sanitize_file_name_chars', array( $this, 'disallow_percentage_symbol_in_filename' ) );
+
+		// Remove admin bar.
+		// add_filter( 'show_admin_bar', '__return_false' );
+		// add_action( 'admin_head-profile.php', array( $this, 'hide_user_profile_admin_bar_setting' ) );
 	}
 
 	/**
@@ -145,6 +149,15 @@ class Yo_WP_Pimp_My_Ride {
 	public function disallow_percentage_symbol_in_filename( $special_chars ) {
 		$special_chars[] = '%';
 		return $special_chars;
+	}
+
+	/**
+	 * Hide admin bar setting on user profile page.
+	 *
+	 * @since 1.0.0
+	 */
+	public function hide_user_profile_admin_bar_setting() {
+		echo '<style>.show-admin-bar{display:none;}</style>';
 	}
 }
 
