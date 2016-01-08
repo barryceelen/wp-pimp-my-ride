@@ -82,6 +82,10 @@ class Yo_WP_Pimp_My_Ride {
 
 		// Remove percentage symbol from filename (plus symbols etc. would be bad as well).
 		add_filter ( 'sanitize_file_name_chars', array( $this, 'disallow_percentage_symbol_in_filename' ) );
+
+		// Remove width and height attributes when inserting images into post.
+		add_filter( 'post_thumbnail_html', array( $this, 'remove_width_attribute' ), 10 );
+		add_filter( 'image_send_to_editor', array( $this, 'remove_width_attribute' ), 10 );
 	}
 
 	/**
@@ -145,6 +149,16 @@ class Yo_WP_Pimp_My_Ride {
 	public function disallow_percentage_symbol_in_filename( $special_chars ) {
 		$special_chars[] = '%';
 		return $special_chars;
+	}
+
+	/**
+	 * Remove width and height attributes when inserting image into post.
+	 *
+	 * @since 1.0.0
+	 */
+	public function remove_width_attribute( $html ) {
+		$html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
+		return $html;
 	}
 }
 
