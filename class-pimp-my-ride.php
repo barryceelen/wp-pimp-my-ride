@@ -86,6 +86,10 @@ class Yo_WP_Pimp_My_Ride {
 		// Remove width and height attributes when inserting images into post.
 		add_filter( 'post_thumbnail_html', array( $this, 'remove_width_attribute' ), 10 );
 		add_filter( 'image_send_to_editor', array( $this, 'remove_width_attribute' ), 10 );
+
+		// Remove admin bar.
+		// add_filter( 'show_admin_bar', '__return_false' );
+		// add_action( 'admin_head-profile.php', array( $this, 'hide_user_profile_admin_bar_setting' ) );
 	}
 
 	/**
@@ -159,6 +163,15 @@ class Yo_WP_Pimp_My_Ride {
 	public function remove_width_attribute( $html ) {
 		$html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
 		return $html;
+	}
+
+	/**
+	 * Hide admin bar setting on user profile page.
+	 *
+	 * @since 1.0.0
+	 */
+	public function hide_user_profile_admin_bar_setting() {
+		echo '<style>.show-admin-bar{display:none;}</style>';
 	}
 }
 
