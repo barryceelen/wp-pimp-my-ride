@@ -62,10 +62,10 @@ class Yo_WP_Pimp_My_Ride {
 	private function add_actions_and_filters() {
 
 		// Dequeue jQuery Migrate.
-		add_filter( 'wp_default_scripts', array( $this, 'dequeue_jquery_migrate' )  );
+		add_filter( 'wp_default_scripts', array( $this, 'dequeue_jquery_migrate' ) );
 
-		// Dequeue WP Embed
-		remove_action( 'wp_head', 'wp_oembed_add_host_js', 10  );
+		// Dequeue WP Embed.
+		remove_action( 'wp_head', 'wp_oembed_add_host_js', 10 );
 
 		// Add javascript detection.
 		add_action( 'wp_head', array( $this, 'javascript_detection' ), 0 );
@@ -81,7 +81,7 @@ class Yo_WP_Pimp_My_Ride {
 		add_filter( 'tiny_mce_plugins', array( $this, 'disable_emojis_tinymce' ) );
 
 		// Remove percentage symbol from filename (plus symbols etc. would be bad as well).
-		add_filter ( 'sanitize_file_name_chars', array( $this, 'disallow_percentage_symbol_in_filename' ) );
+		add_filter( 'sanitize_file_name_chars', array( $this, 'disallow_percentage_symbol_in_filename' ) );
 
 		// Remove width and height attributes when inserting images into post.
 		add_filter( 'post_thumbnail_html', array( $this, 'remove_width_attribute' ), 10 );
@@ -98,10 +98,11 @@ class Yo_WP_Pimp_My_Ride {
 	 * @since 1.0.0
 	 *
 	 * @access private
+	 * @param WP_Scripts $scripts Default scripts.
 	 */
 	public function dequeue_jquery_migrate( $scripts ) {
-		if( ! is_admin() ) {
-			$scripts->remove( 'jquery');
+		if ( ! is_admin() ) {
+			$scripts->remove( 'jquery' );
 			$scripts->add( 'jquery', false, array( 'jquery-core' ), false );
 		}
 	}
@@ -125,7 +126,7 @@ class Yo_WP_Pimp_My_Ride {
 	 * @since 1.0.0
 	 *
 	 * @access private
-	 * @param array $plugins
+	 * @param array $plugins TinyMCE plugins.
 	 * @return array
 	 */
 	public function disable_emojis_tinymce( $plugins ) {
@@ -147,7 +148,7 @@ class Yo_WP_Pimp_My_Ride {
 	 * @since 1.0.0
 	 *
 	 * @access private
-	 * @param array $special_chars
+	 * @param array $special_chars List of disallowed special characters.
 	 * @return array $special_chars
 	 */
 	public function disallow_percentage_symbol_in_filename( $special_chars ) {
@@ -159,9 +160,11 @@ class Yo_WP_Pimp_My_Ride {
 	 * Remove width and height attributes when inserting image into post.
 	 *
 	 * @since 1.0.0
+	 * @param string $html HTML for the post thumbnail or image inserted into the editor.
+	 * @return string Modified html.
 	 */
 	public function remove_width_attribute( $html ) {
-		$html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
+		$html = preg_replace( '/(width|height)="\d*"\s/', '', $html );
 		return $html;
 	}
 
