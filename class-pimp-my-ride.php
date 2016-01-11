@@ -87,6 +87,9 @@ class Yo_WP_Pimp_My_Ride {
 		add_filter( 'post_thumbnail_html', array( $this, 'remove_width_and_height_attribute' ), 10 );
 		add_filter( 'image_send_to_editor', array( $this, 'remove_width_and_height_attribute' ), 10 );
 
+		// Modify Tiny_MCE toolbars.
+		add_filter( 'tiny_mce_before_init', array( $this, 'customformatTinyMCE' ) );
+
 		// Remove admin bar.
 		// add_filter( 'show_admin_bar', '__return_false' );
 		// add_action( 'admin_head-profile.php', array( $this, 'hide_user_profile_admin_bar_setting' ) );
@@ -166,6 +169,37 @@ class Yo_WP_Pimp_My_Ride {
 	public function remove_width_and_height_attribute( $html ) {
 		$html = preg_replace( '/(width|height)="\d*"\s/', '', $html );
 		return $html;
+	}
+
+	/**
+	 * Remove items from the TinyMCE toolbar.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array Options.
+	 * @return array Modified options.
+	 */
+	function customformatTinyMCE( $options ) {
+
+
+		$items_to_remove = array( 'wp_more', 'underline', 'forecolor', 'outdent', 'indent' );
+		$toolbars        = array( 'toolbar1', 'toolbar2' );
+
+		foreach ( $toolbars as $toolbar ) {
+			$items_array = explode( ',', $options[ $toolbar ] );
+			foreach( $items_to_remove as $item ) {
+				$item_key = array_keys( $items_array, $item );
+				foreach( $item_key as $k => $v ) {
+					unset( $items_array[ $v ] );
+				}
+			}
+			$options[ $toolbar ] = implode( ',', $items_array );
+		}
+
+		// Remove h1, h5, h6.
+		$options['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4;Preformatted=pre';
+
+		return $options;
 	}
 
 	/**
