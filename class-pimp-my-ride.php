@@ -84,8 +84,8 @@ class Yo_WP_Pimp_My_Ride {
 		add_filter( 'sanitize_file_name_chars', array( $this, 'disallow_percentage_symbol_in_filename' ) );
 
 		// Remove width and height attributes when inserting images into post.
-		add_filter( 'post_thumbnail_html', array( $this, 'remove_width_attribute' ), 10 );
-		add_filter( 'image_send_to_editor', array( $this, 'remove_width_attribute' ), 10 );
+		add_filter( 'post_thumbnail_html', array( $this, 'remove_width_and_height_attribute' ), 10 );
+		add_filter( 'image_send_to_editor', array( $this, 'remove_width_and_height_attribute' ), 10 );
 
 		// Remove admin bar.
 		// add_filter( 'show_admin_bar', '__return_false' );
@@ -163,7 +163,7 @@ class Yo_WP_Pimp_My_Ride {
 	 * @param string $html HTML for the post thumbnail or image inserted into the editor.
 	 * @return string Modified html.
 	 */
-	public function remove_width_attribute( $html ) {
+	public function remove_width_and_height_attribute( $html ) {
 		$html = preg_replace( '/(width|height)="\d*"\s/', '', $html );
 		return $html;
 	}
