@@ -7,3 +7,10 @@ A small and incomplete collection of WordPress customisations I tend to use, con
 - Removes emoji support
 - Replaces percentage symbols in file names
 - Removes height and width attribute when inserting image in post
+- Removes stuff from the TinyMCE toolbars
+  - h1, h5, h6
+  - underline
+  - insert read more link
+  - text color
+  - outdent, indent
+ 	
