@@ -90,6 +90,9 @@ class Yo_WP_Pimp_My_Ride {
 		// Modify Tiny_MCE toolbars.
 		add_filter( 'tiny_mce_before_init', array( $this, 'customformatTinyMCE' ) );
 
+		// Set jpeg compression.
+		add_filter( 'jpeg_quality', array( $this, 'filter_jpeg_quality' ) );
+
 		// Remove admin bar.
 		// add_filter( 'show_admin_bar', '__return_false' );
 		// add_action( 'admin_head-profile.php', array( $this, 'hide_user_profile_admin_bar_setting' ) );
@@ -200,6 +203,15 @@ class Yo_WP_Pimp_My_Ride {
 		$options['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4;Preformatted=pre';
 
 		return $options;
+	}
+
+	/**
+	 * Set jpeg quality to 100.
+	 *
+	 * @since 1.0.0
+	 */
+	public function filter_jpeg_quality( $quality ) {
+		return 100;
 	}
 
 	/**

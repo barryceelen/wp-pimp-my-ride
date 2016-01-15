@@ -13,4 +13,5 @@ A small and incomplete collection of WordPress customisations I tend to use, con
   - insert read more link
   - text color
   - outdent, indent
+- Set jpg compression to 100
  	
