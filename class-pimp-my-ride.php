@@ -166,6 +166,8 @@ class Yo_WP_Pimp_My_Ride {
 	 * Remove width and height attributes when inserting image into post.
 	 *
 	 * @since 1.0.0
+	 *
+	 * @access private
 	 * @param string $html HTML for the post thumbnail or image inserted into the editor.
 	 * @return string Modified html.
 	 */
@@ -179,10 +181,11 @@ class Yo_WP_Pimp_My_Ride {
 	 *
 	 * @since 1.0.0
 	 *
+	 * @access private
 	 * @param array Options.
 	 * @return array Modified options.
 	 */
-	function customformatTinyMCE( $options ) {
+	public function customformatTinyMCE( $options ) {
 
 
 		$items_to_remove = array( 'wp_more', 'underline', 'forecolor', 'outdent', 'indent' );
@@ -209,6 +212,8 @@ class Yo_WP_Pimp_My_Ride {
 	 * Set jpeg quality to 100.
 	 *
 	 * @since 1.0.0
+	 *
+	 * @access private
 	 */
 	public function filter_jpeg_quality( $quality ) {
 		return 100;
@@ -218,6 +223,8 @@ class Yo_WP_Pimp_My_Ride {
 	 * Hide admin bar setting on user profile page.
 	 *
 	 * @since 1.0.0
+	 *
+	 * @access private
 	 */
 	public function hide_user_profile_admin_bar_setting() {
 		echo '<style>.show-admin-bar{display:none;}</style>';
