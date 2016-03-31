@@ -80,9 +80,6 @@ class Yo_WP_Pimp_My_Ride {
 		remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
 		add_filter( 'tiny_mce_plugins', array( $this, 'disable_emojis_tinymce' ) );
 
-		// Remove percentage symbol from filename (plus symbols etc. would be bad as well).
-		add_filter( 'sanitize_file_name_chars', array( $this, 'disallow_percentage_symbol_in_filename' ) );
-
 		// Remove width and height attributes when inserting images into post.
 		add_filter( 'post_thumbnail_html', array( $this, 'remove_width_and_height_attribute' ), 10 );
 		add_filter( 'image_send_to_editor', array( $this, 'remove_width_and_height_attribute' ), 10 );
@@ -142,24 +139,6 @@ class Yo_WP_Pimp_My_Ride {
 		}
 
 		return $plugins;
-	}
-
-	/**
-	 * Add percentage symbol to filename filter.
-	 *
-	 * File names with percentage symbols in them can cause trouble.
-	 *
-	 * @see https://core.trac.wordpress.org/ticket/16226
-	 *
-	 * @since 1.0.0
-	 *
-	 * @access private
-	 * @param array $special_chars List of disallowed special characters.
-	 * @return array $special_chars
-	 */
-	public function disallow_percentage_symbol_in_filename( $special_chars ) {
-		$special_chars[] = '%';
-		return $special_chars;
 	}
 
 	/**
