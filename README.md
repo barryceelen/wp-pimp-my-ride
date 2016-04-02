@@ -14,4 +14,4 @@ A small and incomplete collection of WordPress customisations I tend to use, con
   - text color
   - outdent, indent
 - Set jpg compression to 100
- 	
+- Remove accents from file names
