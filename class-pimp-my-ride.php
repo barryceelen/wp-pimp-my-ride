@@ -86,7 +86,7 @@ class Yo_WP_Pimp_My_Ride {
 		add_filter( 'image_send_to_editor', array( $this, 'remove_width_and_height_attribute' ), 10 );
 
 		// Modify Tiny_MCE toolbars.
-		add_filter( 'tiny_mce_before_init', array( $this, 'customformatTinyMCE' ) );
+		add_filter( 'tiny_mce_before_init', array( $this, 'custom_format_tinymce' ) );
 
 		// Set jpeg compression.
 		add_filter( 'jpeg_quality', array( $this, 'filter_jpeg_quality' ) );
@@ -165,30 +165,29 @@ class Yo_WP_Pimp_My_Ride {
 	 * @since 1.0.0
 	 *
 	 * @access private
-	 * @param array Options.
-	 * @return array Modified options.
+	 * @param array $mce_init An array with TinyMCE config.
+	 * @return array Modified array.
 	 */
-	public function customformatTinyMCE( $options ) {
-
+	public function custom_format_tinymce( $mce_init ) {
 
 		$items_to_remove = array( 'wp_more', 'underline', 'forecolor', 'outdent', 'indent' );
 		$toolbars        = array( 'toolbar1', 'toolbar2' );
 
 		foreach ( $toolbars as $toolbar ) {
-			$items_array = explode( ',', $options[ $toolbar ] );
-			foreach( $items_to_remove as $item ) {
+			$items_array = explode( ',', $mce_init[ $toolbar ] );
+			foreach ( $items_to_remove as $item ) {
 				$item_key = array_keys( $items_array, $item );
-				foreach( $item_key as $k => $v ) {
+				foreach ( $item_key as $k => $v ) {
 					unset( $items_array[ $v ] );
 				}
 			}
-			$options[ $toolbar ] = implode( ',', $items_array );
+			$mce_init[ $toolbar ] = implode( ',', $items_array );
 		}
 
 		// Remove h1, h5, h6.
-		$options['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4;Preformatted=pre';
+		$mce_init['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4;Preformatted=pre';
 
-		return $options;
+		return $mce_init;
 	}
 
 	/**
@@ -197,6 +196,7 @@ class Yo_WP_Pimp_My_Ride {
 	 * @since 1.0.0
 	 *
 	 * @access private
+	 * @param int $quality Quality level between 0 (low) and 100 (high) of the JPEG.
 	 */
 	public function filter_jpeg_quality( $quality ) {
 		return 100;
