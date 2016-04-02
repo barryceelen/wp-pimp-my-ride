@@ -8,6 +8,7 @@
  * @license    GPL-2.0+
  * @link       https://github.com/barryceelen/wp-pimp-my-ride
  * @copyright  Barry Ceelen
+ * @version    1.1.0
  */
 
 /**
@@ -89,6 +90,9 @@ class Yo_WP_Pimp_My_Ride {
 
 		// Set jpeg compression.
 		add_filter( 'jpeg_quality', array( $this, 'filter_jpeg_quality' ) );
+
+		// Replace accented characters in file names.
+		add_filter( 'sanitize_file_name', 'remove_accents' );
 
 		// Remove admin bar.
 		// add_filter( 'show_admin_bar', '__return_false' );
