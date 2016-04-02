@@ -205,6 +205,8 @@ class Yo_WP_Pimp_My_Ride {
 	/**
 	 * Hide admin bar setting on user profile page.
 	 *
+	 * Use when hiding the toolbar.
+	 *
 	 * @since 1.0.0
 	 *
 	 * @access private
