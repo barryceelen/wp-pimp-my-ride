@@ -92,7 +92,7 @@ class Yo_WP_Pimp_My_Ride {
 		add_filter( 'jpeg_quality', array( $this, 'filter_jpeg_quality' ) );
 
 		// Replace accented characters in file names.
-		add_filter( 'sanitize_file_name', 'remove_accents' );
+		add_filter( 'sanitize_file_name', array( $this, 'remove_accents' ) );
 
 		// Remove admin bar.
 		// add_filter( 'show_admin_bar', '__return_false' );
@@ -200,6 +200,25 @@ class Yo_WP_Pimp_My_Ride {
 	 */
 	public function filter_jpeg_quality( $quality ) {
 		return 100;
+	}
+
+	/**
+	 * Enhanced 'remove_accents'. If the php Normalizer extension installed, use it.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @see remove_accents()
+	 *
+	 * @param string $string Text that might have accent characters
+	 * @return string Filtered string with replaced "nice" characters.
+	 */
+	public function remove_accents( $string ) {
+		if ( function_exists( 'normalizer_normalize' ) ) {
+			if ( ! normalizer_is_normalized( $string, Normalizer::FORM_C ) ) {
+				$string = normalizer_normalize( $string, Normalizer::FORM_C );
+			}
+		}
+		return remove_accents( $string );
 	}
 
 	/**
