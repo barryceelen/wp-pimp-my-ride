@@ -94,6 +94,9 @@ class Yo_WP_Pimp_My_Ride {
 		// Replace accented characters in file names.
 		add_filter( 'sanitize_file_name', array( $this, 'remove_accents' ) );
 
+		// Remove admin pointers.
+		remove_action( 'admin_enqueue_scripts', array( 'WP_Internal_Pointers', 'enqueue_scripts' ) );
+		
 		// Remove admin bar.
 		// add_filter( 'show_admin_bar', '__return_false' );
 		// add_action( 'admin_head-profile.php', array( $this, 'hide_user_profile_admin_bar_setting' ) );
