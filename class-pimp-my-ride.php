@@ -212,4 +212,5 @@ class Pimp_My_Ride {
 	}
 }
 
-add_action( 'init', array( 'Pimp_My_Ride', 'get_instance' ) );
+global $yo_wp_pimp_my_ride;
+$yo_wp_pimp_my_ride = Ocana_Admin::get_instance();
