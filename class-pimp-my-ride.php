@@ -81,10 +81,6 @@ class Yo_WP_Pimp_My_Ride {
 		remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
 		add_filter( 'tiny_mce_plugins', array( $this, 'disable_emojis_tinymce' ) );
 
-		// Remove width and height attributes when inserting images into post.
-		add_filter( 'post_thumbnail_html', array( $this, 'remove_width_and_height_attribute' ), 10 );
-		add_filter( 'image_send_to_editor', array( $this, 'remove_width_and_height_attribute' ), 10 );
-
 		// Modify Tiny_MCE toolbars.
 		add_filter( 'tiny_mce_before_init', array( $this, 'custom_format_tinymce' ) );
 
@@ -149,20 +145,6 @@ class Yo_WP_Pimp_My_Ride {
 		}
 
 		return $plugins;
-	}
-
-	/**
-	 * Remove width and height attributes when inserting image into post.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @access private
-	 * @param string $html HTML for the post thumbnail or image inserted into the editor.
-	 * @return string Modified html.
-	 */
-	public function remove_width_and_height_attribute( $html ) {
-		$html = preg_replace( '/(width|height)="\d*"\s/', '', $html );
-		return $html;
 	}
 
 	/**
