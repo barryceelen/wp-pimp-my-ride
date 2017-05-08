@@ -92,6 +92,9 @@ class Yo_WP_Pimp_My_Ride {
 
 		// Remove admin pointers.
 		remove_action( 'admin_enqueue_scripts', array( 'WP_Internal_Pointers', 'enqueue_scripts' ) );
+
+		// Remove customizer from admin bar.
+		add_action( 'admin_bar_menu', array( $this, 'remove_customizer_from_admin_bar' ), 999 );
 	}
 
 	/**
@@ -203,6 +206,17 @@ class Yo_WP_Pimp_My_Ride {
 			}
 		}
 		return remove_accents( $string );
+	}
+
+	/**
+	 * Remove customizer from admin bar.
+	 *
+	 * @since 1.0.1
+	 *
+	 * @param WP_Admin_Bar $wp_admin_bar WP_Admin_Bar instance, passed by reference.
+	 */
+	public function remove_customizer_from_admin_bar( $wp_admin_bar ) {
+		$wp_admin_bar->remove_menu( 'customize' );
 	}
 }
 
