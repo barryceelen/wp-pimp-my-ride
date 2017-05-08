@@ -17,7 +17,7 @@
  * @package    WordPress
  * @subpackage Yo_WP_Pimp_My_ride
  */
-class Yo_WP_Pimp_My_Ride {
+class Pimp_My_Ride {
 
 	/**
 	 * Instance of this class.
@@ -163,7 +163,7 @@ class Yo_WP_Pimp_My_Ride {
 		foreach ( $toolbars as $toolbar ) {
 			$items_array = explode( ',', $mce_init[ $toolbar ] );
 			foreach ( $items_to_remove as $item ) {
-				$item_key = array_keys( $items_array, $item );
+				$item_key = array_keys( $items_array, $item, true );
 				foreach ( $item_key as $k => $v ) {
 					unset( $items_array[ $v ] );
 				}
@@ -196,7 +196,7 @@ class Yo_WP_Pimp_My_Ride {
 	 *
 	 * @see remove_accents()
 	 *
-	 * @param string $string Text that might have accent characters
+	 * @param string $string Text that might have accent characters.
 	 * @return string Filtered string with replaced "nice" characters.
 	 */
 	public function remove_accents( $string ) {
@@ -220,4 +220,4 @@ class Yo_WP_Pimp_My_Ride {
 	}
 }
 
-add_action( 'init', array( 'Yo_WP_Pimp_My_Ride', 'get_instance' ) );
+add_action( 'init', array( 'Pimp_My_Ride', 'get_instance' ) );
