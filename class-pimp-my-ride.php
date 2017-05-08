@@ -8,7 +8,7 @@
  * @license    GPL-2.0+
  * @link       https://github.com/barryceelen/wp-pimp-my-ride
  * @copyright  Barry Ceelen
- * @version    1.1.0
+ * @version    1.2.0
  */
 
 /**
@@ -203,7 +203,7 @@ class Pimp_My_Ride {
 	/**
 	 * Remove customizer from admin bar.
 	 *
-	 * @since 1.0.1
+	 * @since 1.2.0
 	 *
 	 * @param WP_Admin_Bar $wp_admin_bar WP_Admin_Bar instance, passed by reference.
 	 */
