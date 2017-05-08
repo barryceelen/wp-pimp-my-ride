@@ -57,8 +57,6 @@ class Pimp_My_Ride {
 	 * Add actions and filters.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @access private
 	 */
 	private function add_actions_and_filters() {
 
@@ -102,7 +100,6 @@ class Pimp_My_Ride {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @access private
 	 * @param WP_Scripts $scripts Default scripts.
 	 */
 	public function dequeue_jquery_migrate( $scripts ) {
@@ -118,8 +115,6 @@ class Pimp_My_Ride {
 	 * Adds a `js` class to the root `<html>` element when JavaScript is detected.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @access private
 	 */
 	public function javascript_detection() {
 
@@ -133,7 +128,6 @@ class Pimp_My_Ride {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @access private
 	 * @param array $plugins TinyMCE plugins.
 	 * @return array
 	 */
@@ -151,7 +145,6 @@ class Pimp_My_Ride {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @access private
 	 * @param array $mce_init An array with TinyMCE config.
 	 * @return array Modified array.
 	 */
@@ -182,7 +175,6 @@ class Pimp_My_Ride {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @access private
 	 * @param int $quality Quality level between 0 (low) and 100 (high) of the JPEG.
 	 */
 	public function filter_jpeg_quality( $quality ) {
