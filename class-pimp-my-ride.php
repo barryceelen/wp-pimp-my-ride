@@ -96,7 +96,7 @@ class Yo_WP_Pimp_My_Ride {
 
 		// Remove admin pointers.
 		remove_action( 'admin_enqueue_scripts', array( 'WP_Internal_Pointers', 'enqueue_scripts' ) );
-		
+
 		// Remove admin bar.
 		// add_filter( 'show_admin_bar', '__return_false' );
 		// add_action( 'admin_head-profile.php', array( $this, 'hide_user_profile_admin_bar_setting' ) );
@@ -127,7 +127,10 @@ class Yo_WP_Pimp_My_Ride {
 	 * @access private
 	 */
 	public function javascript_detection() {
-		echo "<script>(function(html){html.className = html.className + ' js';})(document.documentElement);</script>\n";
+
+		if ( ! is_admin() ) {
+			echo "<script>(function(html){html.className = html.className + ' js';})(document.documentElement);</script>\n";
+		}
 	}
 
 	/**
