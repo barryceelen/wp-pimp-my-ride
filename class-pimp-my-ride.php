@@ -92,10 +92,6 @@ class Yo_WP_Pimp_My_Ride {
 
 		// Remove admin pointers.
 		remove_action( 'admin_enqueue_scripts', array( 'WP_Internal_Pointers', 'enqueue_scripts' ) );
-
-		// Remove admin bar.
-		// add_filter( 'show_admin_bar', '__return_false' );
-		// add_action( 'admin_head-profile.php', array( $this, 'hide_user_profile_admin_bar_setting' ) );
 	}
 
 	/**
@@ -207,19 +203,6 @@ class Yo_WP_Pimp_My_Ride {
 			}
 		}
 		return remove_accents( $string );
-	}
-
-	/**
-	 * Hide admin bar setting on user profile page.
-	 *
-	 * Use when hiding the toolbar.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @access private
-	 */
-	public function hide_user_profile_admin_bar_setting() {
-		echo '<style>.show-admin-bar{display:none;}</style>';
 	}
 }
 
